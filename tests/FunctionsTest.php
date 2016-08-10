@@ -3,8 +3,7 @@ declare(strict_types=1);
 
 namespace ApiClients\Tests\Foundation\Resource;
 
-use ApiClients\Tests\Foundation\Resources\Sync\Resource;
-use ApiClients\Tests\Foundation\Resource\TestCase;
+use ApiClients\Tests\Foundation\Hydrator\Resources\Sync\Resource;
 use function ApiClients\Foundation\get_properties;
 use function ApiClients\Foundation\get_property;
 use function ApiClients\Foundation\resource_pretty_print;
@@ -48,20 +47,20 @@ class FunctionsTest extends TestCase
             $this->getJson(),
             'Async'
         );
-        $expected = "ApiClients\Tests\Foundation\Resource\Resources\Sync\Resource
+        $expected = "ApiClients\Tests\Foundation\Hydrator\Resources\Sync\Resource
 	id: 1
 	slug: Wyrihaximus/php-travis-client
-	sub: ApiClients\Tests\Foundation\Resource\Resources\Async\SubResource
+	sub: ApiClients\Tests\Foundation\Hydrator\Resources\Async\SubResource
 		id: 1
 		slug: Wyrihaximus/php-travis-client
 	subs: [
-		ApiClients\Tests\Foundation\Resource\Resources\Async\SubResource
+		ApiClients\Tests\Foundation\Hydrator\Resources\Async\SubResource
 			id: 1
 			slug: Wyrihaximus/php-travis-client
-		ApiClients\Tests\Foundation\Resource\Resources\Async\SubResource
+		ApiClients\Tests\Foundation\Hydrator\Resources\Async\SubResource
 			id: 2
 			slug: Wyrihaximus/php-travis-client
-		ApiClients\Tests\Foundation\Resource\Resources\Async\SubResource
+		ApiClients\Tests\Foundation\Hydrator\Resources\Async\SubResource
 			id: 3
 			slug: Wyrihaximus/php-travis-client
 	]

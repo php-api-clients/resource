@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "30aa9044946eb0d88b47bb58f898efab",
-    "content-hash": "583d7780614a787d9a7560f45a7b35c5",
+    "hash": "3e94ca73c844a6770a418b55ecff7c7d",
+    "content-hash": "ab970b7c62a24324be7709b535774b08",
     "packages": [
         {
             "name": "api-clients/hydrator",
@@ -13,15 +13,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-api-clients/hydrator.git",
-                "reference": "6776efbdea1750a3b9e28b315360f4c415862bb2"
+                "reference": "c935c09e1897bf387ed3890059c44d887e6d7487"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-api-clients/hydrator/zipball/6776efbdea1750a3b9e28b315360f4c415862bb2",
-                "reference": "6776efbdea1750a3b9e28b315360f4c415862bb2",
+                "url": "https://api.github.com/repos/php-api-clients/hydrator/zipball/c935c09e1897bf387ed3890059c44d887e6d7487",
+                "reference": "c935c09e1897bf387ed3890059c44d887e6d7487",
                 "shasum": ""
             },
             "require": {
+                "api-clients/resource": "dev-master",
                 "clue/block-react": "^1.1",
                 "doctrine/annotations": "^1.2",
                 "guzzlehttp/guzzle": "^6.0",
@@ -66,7 +67,7 @@
                     "email": "ceesjank@gmail.com"
                 }
             ],
-            "time": "2016-08-10 11:07:10"
+            "time": "2016-08-10 13:28:37"
         },
         {
             "name": "clue/block-react",

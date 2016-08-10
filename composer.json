@@ -9,15 +9,6 @@
   ],
   "require": {
     "php": "^7.0",
-    "guzzlehttp/guzzle": "^6.0",
-    "react/promise": "^2.2",
-    "wyrihaximus/react-guzzle-psr7": "^1.0",
-    "ocramius/generated-hydrator": "^2.0",
-    "clue/block-react": "^1.1",
-    "reactivex/rxphp": "^1.2",
-    "react/cache": "^0.4.1",
-    "wyrihaximus/ticking-promise": "^1.6",
-    "doctrine/annotations": "^1.2",
     "api-clients/hydrator": "dev-master"
   },
   "require-dev": {
@@ -36,7 +27,8 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "ApiClients\\Tests\\Foundation\\Resource\\": "tests/"
+      "ApiClients\\Tests\\Foundation\\Resource\\": "tests/",
+      "ApiClients\\Tests\\Foundation\\Hydrator\\": "vendor/api-clients/hydrator/tests/"
     }
   }
 }
