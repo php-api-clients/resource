@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace ApiClients\Tests\Foundation\Resources;
+namespace ApiClients\Tests\Foundation\Resource\Resources;
 
 use ApiClients\Foundation\Annotations\Collection;
 use ApiClients\Foundation\Annotations\Nested;
