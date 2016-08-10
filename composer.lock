@@ -13,12 +13,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-api-clients/hydrator.git",
-                "reference": "9c3bb80b1bcf8f4e3fab43a534f9f9013ca2833a"
+                "reference": "efcc97ac686690f884303fe9bdf1689cb536c2ec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-api-clients/hydrator/zipball/9c3bb80b1bcf8f4e3fab43a534f9f9013ca2833a",
-                "reference": "9c3bb80b1bcf8f4e3fab43a534f9f9013ca2833a",
+                "url": "https://api.github.com/repos/php-api-clients/hydrator/zipball/efcc97ac686690f884303fe9bdf1689cb536c2ec",
+                "reference": "efcc97ac686690f884303fe9bdf1689cb536c2ec",
                 "shasum": ""
             },
             "require": {
@@ -67,7 +67,7 @@
                     "email": "ceesjank@gmail.com"
                 }
             ],
-            "time": "2016-08-10 17:01:06"
+            "time": "2016-08-10 17:31:56"
         },
         {
             "name": "clue/block-react",
