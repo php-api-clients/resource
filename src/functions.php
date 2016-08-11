@@ -15,6 +15,7 @@ function resource_pretty_print(ResourceInterface $resource, int $indentLevel = 0
 {
     $indent = str_repeat("\t", $indentLevel);
     $propertyIndent = str_repeat("\t", $indentLevel + 1);
+    $arrayIndent = str_repeat("\t", $indentLevel + 2);
 
     if ($resourceIndent) {
         echo $indent;
@@ -33,7 +34,12 @@ function resource_pretty_print(ResourceInterface $resource, int $indentLevel = 0
 
         if (is_array($propertyValue)) {
             echo '[', PHP_EOL;
-            foreach ($propertyValue as $arrayValue) {
+            foreach ($propertyValue as $arrayKey => $arrayValue) {
+                if (!($arrayValue instanceof ResourceInterface)) {
+                    echo $arrayIndent, $arrayKey, ': ', $arrayValue, PHP_EOL;
+                    continue;
+                }
+
                 resource_pretty_print($arrayValue, $indentLevel + 2, true);
             }
             echo $propertyIndent, ']', PHP_EOL;
