@@ -32,7 +32,7 @@ matrix:
 
 ## Install or update dependencies
 install:
-  - export COMPOSER_ROOT_VERSION='dev-'$TRAVIS_BRANCH
+  - export COMPOSER_ROOT_VERSION='dev-master'
   - if [ -z "$dependencies" ]; then composer install; fi;
   - if [ "$dependencies" = "lowest" ]; then composer update --prefer-lowest -n; fi;
   - if [ "$dependencies" = "highest" ]; then composer update -n; fi;
