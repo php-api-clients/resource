@@ -32,10 +32,9 @@ matrix:
 
 ## Install or update dependencies
 install:
-  - TRAVIS_BRANCH=master COMPOSER_ROOT_VERSION='dev-'$TRAVIS_BRANCH
-  - if [ -z "$dependencies" ]; then composer install; fi;
-  - if [ "$dependencies" = "lowest" ]; then composer update --prefer-lowest -n; fi;
-  - if [ "$dependencies" = "highest" ]; then composer update -n; fi;
+  - if [ -z "$dependencies" ]; then COMPOSER_ROOT_VERSION='dev-'$TRAVIS_BRANCH composer install; fi;
+  - if [ "$dependencies" = "lowest" ]; then COMPOSER_ROOT_VERSION='dev-'$TRAVIS_BRANCH composer update --prefer-lowest -n; fi;
+  - if [ "$dependencies" = "highest" ]; then COMPOSER_ROOT_VERSION='dev-'$TRAVIS_BRANCH composer update -n; fi;
   - composer show
 
 ## Run the actual test
