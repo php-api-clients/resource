@@ -2,6 +2,7 @@
 
 namespace ApiClients\Foundation\Resource;
 
-interface ResourceInterface
+interface RefreshableResourceInterface
 {
+    public function refresh();
 }
