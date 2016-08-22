@@ -1,11 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace ApiClients\Tests\Foundation\Resource;
+namespace ApiClients\Foundation\Resource;
 
 use ApiClients\Foundation\Hydrator\Annotations\Collection;
 use ApiClients\Foundation\Hydrator\Annotations\Nested;
-use ApiClients\Foundation\Resource\AbstractResource;
-use ApiClients\Foundation\Resource\ResourceInterface;
 
 /**
  * @Nested(foo="Acme\Bar", bar="Acme\Foo")
