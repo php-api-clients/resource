@@ -2,6 +2,6 @@
 
 namespace ApiClients\Foundation\Resource;
 
-interface EmptyResourceInterface
+interface EmptyResourceInterface extends ResourceInterface
 {
 }
