@@ -2,26 +2,25 @@
 
 namespace ApiClients\Foundation\Resource;
 
-use ApiClients\Foundation\Hydrator\HydrateTrait;
+use League\Tactician\CommandBus;
 
 abstract class AbstractResource implements ResourceInterface
 {
-    use HydrateTrait;
+    /**
+     * @var CommandBus
+     */
+    private $commandBus;
 
-    public function setExtraProperties(array $properties)
+    final public function __construct(CommandBus $commandBus)
     {
-        foreach ($properties as $key => $value) {
-            $this->setPropertyValue($key, $value);
-        }
+        $this->commandBus = $commandBus;
     }
 
-    private function setPropertyValue(string $key, $value)
+    /**
+     * @return CommandBus
+     */
+    protected function getCommandBus()
     {
-        $methodName = $key . 'Setter';
-        if (!method_exists($this, $methodName)) {
-            return;
-        }
-
-        $this->$methodName($value);
+        return $this->commandBus;
     }
 }
