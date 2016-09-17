@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace ApiClients\Tests\Foundation\Resource\Resources;
 
+use ApiClients\Foundation\Resource\AbstractResource;
 use ApiClients\Foundation\Resource\ResourceInterface;
-use ApiClients\Foundation\Transport\Client;
 
-class SubResource implements ResourceInterface
+class SubResource extends AbstractResource implements ResourceInterface
 {
     /**
      * @var int

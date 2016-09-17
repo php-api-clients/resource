@@ -1,20 +1,22 @@
-<?php
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace ApiClients\Tests\Foundation\Resource;
 
-use ApiClients\Tests\Foundation\Hydrator\Resources\Sync\Resource;
+use ApiClients\Tests\Foundation\Resource\Resources\Async\SubResource;
+use ApiClients\Tests\Foundation\Resource\Resources\Sync\Resource;
 use function ApiClients\Foundation\get_properties;
 use function ApiClients\Foundation\get_property;
 use function ApiClients\Foundation\resource_pretty_print;
+use League\Tactician\Setup\QuickStart;
+use PHPUnit_Framework_TestCase;
 
-class FunctionsTest extends TestCase
+class FunctionsTest extends PHPUnit_Framework_TestCase
 {
     public function testGetProperties()
     {
         $properties = [];
 
-        foreach (get_properties(new Resource()) as $property) {
+        foreach (get_properties(new Resource(QuickStart::create([]))) as $property) {
             $properties[] = $property->getName();
         }
 
@@ -28,39 +30,49 @@ class FunctionsTest extends TestCase
 
     public function testGetProperty()
     {
-        $syncRepository = $this->hydrate(
-            Resource::class,
-            $this->getJson(),
-            'Async'
-        );
+        $resource = new Resource(QuickStart::create([]));
+        get_property($resource, 'id')->setValue($resource, $this->getJson()['id']);
 
         $this->assertSame(
             $this->getJson()['id'],
-            get_property($syncRepository, 'id')->getValue($syncRepository)
+            get_property($resource, 'id')->getValue($resource)
         );
     }
 
     public function testResourcePrettyPrint()
     {
-        $resource = $this->hydrate(
-            Resource::class,
-            $this->getJson(),
-            'Async'
-        );
-        $expected = "ApiClients\Tests\Foundation\Hydrator\Resources\Sync\Resource
+        $resource = new Resource(QuickStart::create([]));
+        get_property($resource, 'id')->setValue($resource, $this->getJson()['id']);
+        get_property($resource, 'slug')->setValue($resource, $this->getJson()['slug']);
+
+        $sub = new SubResource(QuickStart::create([]));
+        get_property($sub, 'id')->setValue($sub, $this->getJson()['id']);
+        get_property($sub, 'slug')->setValue($sub, $this->getJson()['slug']);
+        get_property($resource, 'sub')->setValue($resource, $sub);
+
+        $subs = [];
+        foreach ($this->getJson()['subs'] as $index => $row) {
+            $subZero = new SubResource(QuickStart::create([]));
+            get_property($subZero, 'id')->setValue($subZero, $row['id']);
+            get_property($subZero, 'slug')->setValue($subZero, $row['slug']);
+            $subs[] = $subZero;
+        }
+        get_property($resource, 'subs')->setValue($resource, $subs);
+
+        $expected = "ApiClients\Tests\Foundation\Resource\Resources\Sync\Resource
 	id: 1
 	slug: Wyrihaximus/php-travis-client
-	sub: ApiClients\Tests\Foundation\Hydrator\Resources\Async\SubResource
+	sub: ApiClients\Tests\Foundation\Resource\Resources\Async\SubResource
 		id: 1
 		slug: Wyrihaximus/php-travis-client
 	subs: [
-		ApiClients\Tests\Foundation\Hydrator\Resources\Async\SubResource
+		ApiClients\Tests\Foundation\Resource\Resources\Async\SubResource
 			id: 1
 			slug: Wyrihaximus/php-travis-client
-		ApiClients\Tests\Foundation\Hydrator\Resources\Async\SubResource
+		ApiClients\Tests\Foundation\Resource\Resources\Async\SubResource
 			id: 2
 			slug: Wyrihaximus/php-travis-client
-		ApiClients\Tests\Foundation\Hydrator\Resources\Async\SubResource
+		ApiClients\Tests\Foundation\Resource\Resources\Async\SubResource
 			id: 3
 			slug: Wyrihaximus/php-travis-client
 	]
@@ -89,5 +101,31 @@ class FunctionsTest extends TestCase
         }
 
         $this->assertSame($expected, $actual);
+    }
+
+    protected function getJson()
+    {
+        return [
+            'id' => 1,
+            'slug' => 'Wyrihaximus/php-travis-client',
+            'sub' => [
+                'id' => 1,
+                'slug' => 'Wyrihaximus/php-travis-client',
+            ],
+            'subs' => [
+                [
+                    'id' => 1,
+                    'slug' => 'Wyrihaximus/php-travis-client',
+                ],
+                [
+                    'id' => 2,
+                    'slug' => 'Wyrihaximus/php-travis-client',
+                ],
+                [
+                    'id' => 3,
+                    'slug' => 'Wyrihaximus/php-travis-client',
+                ],
+            ],
+        ];
     }
 }

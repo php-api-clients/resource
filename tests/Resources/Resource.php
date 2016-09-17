@@ -6,6 +6,7 @@ namespace ApiClients\Tests\Foundation\Resource\Resources;
 use ApiClients\Foundation\Annotations\Collection;
 use ApiClients\Foundation\Annotations\Nested;
 use ApiClients\Foundation\Annotations\Rename;
+use ApiClients\Foundation\Resource\AbstractResource;
 use ApiClients\Foundation\Resource\ResourceInterface;
 use ApiClients\Foundation\Transport\Client;
 
@@ -14,7 +15,7 @@ use ApiClients\Foundation\Transport\Client;
  * @Collection(subs="SubResource")
  * @Rename(slug="slog")
  */
-class Resource implements ResourceInterface
+class Resource extends AbstractResource implements ResourceInterface
 {
     /**
      * @var int
