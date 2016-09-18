@@ -16,7 +16,7 @@ class FunctionsTest extends PHPUnit_Framework_TestCase
     {
         $properties = [];
 
-        foreach (get_properties(new Resource(QuickStart::create([]))) as $property) {
+        foreach (get_properties(new Resource()) as $property) {
             $properties[] = $property->getName();
         }
 
@@ -30,7 +30,7 @@ class FunctionsTest extends PHPUnit_Framework_TestCase
 
     public function testGetProperty()
     {
-        $resource = new Resource(QuickStart::create([]));
+        $resource = new Resource();
         get_property($resource, 'id')->setValue($resource, $this->getJson()['id']);
 
         $this->assertSame(
@@ -41,18 +41,18 @@ class FunctionsTest extends PHPUnit_Framework_TestCase
 
     public function testResourcePrettyPrint()
     {
-        $resource = new Resource(QuickStart::create([]));
+        $resource = new Resource();
         get_property($resource, 'id')->setValue($resource, $this->getJson()['id']);
         get_property($resource, 'slug')->setValue($resource, $this->getJson()['slug']);
 
-        $sub = new SubResource(QuickStart::create([]));
+        $sub = new SubResource();
         get_property($sub, 'id')->setValue($sub, $this->getJson()['id']);
         get_property($sub, 'slug')->setValue($sub, $this->getJson()['slug']);
         get_property($resource, 'sub')->setValue($resource, $sub);
 
         $subs = [];
         foreach ($this->getJson()['subs'] as $index => $row) {
-            $subZero = new SubResource(QuickStart::create([]));
+            $subZero = new SubResource();
             get_property($subZero, 'id')->setValue($subZero, $row['id']);
             get_property($subZero, 'slug')->setValue($subZero, $row['slug']);
             $subs[] = $subZero;

@@ -11,7 +11,7 @@ abstract class AbstractResource implements ResourceInterface
      */
     private $commandBus;
 
-    final public function __construct(CommandBus $commandBus)
+    public function setCommandBus(CommandBus $commandBus)
     {
         $this->commandBus = $commandBus;
     }

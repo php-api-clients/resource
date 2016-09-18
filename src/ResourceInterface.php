@@ -6,5 +6,5 @@ use League\Tactician\CommandBus;
 
 interface ResourceInterface
 {
-    public function __construct(CommandBus $commandBus);
+    public function setCommandBus(CommandBus $commandBus);
 }
