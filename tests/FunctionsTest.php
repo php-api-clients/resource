@@ -7,8 +7,10 @@ use ApiClients\Tests\Foundation\Resource\Resources\Sync\Resource;
 use function ApiClients\Foundation\get_properties;
 use function ApiClients\Foundation\get_property;
 use function ApiClients\Foundation\resource_pretty_print;
-use League\Tactician\Setup\QuickStart;
+use ApiClients\Tools\CommandBus\CommandBus;
+use League\Tactician\Handler\CommandHandlerMiddleware;
 use PHPUnit_Framework_TestCase;
+use React\EventLoop\LoopInterface;
 
 class FunctionsTest extends PHPUnit_Framework_TestCase
 {
@@ -16,7 +18,7 @@ class FunctionsTest extends PHPUnit_Framework_TestCase
     {
         $properties = [];
 
-        foreach (get_properties(new Resource(QuickStart::create([]))) as $property) {
+        foreach (get_properties(new Resource($this->getCommandBus())) as $property) {
             $properties[] = $property->getName();
         }
 
@@ -30,7 +32,7 @@ class FunctionsTest extends PHPUnit_Framework_TestCase
 
     public function testGetProperty()
     {
-        $resource = new Resource(QuickStart::create([]));
+        $resource = new Resource($this->getCommandBus());
         get_property($resource, 'id')->setValue($resource, $this->getJson()['id']);
 
         $this->assertSame(
@@ -41,18 +43,18 @@ class FunctionsTest extends PHPUnit_Framework_TestCase
 
     public function testResourcePrettyPrint()
     {
-        $resource = new Resource(QuickStart::create([]));
+        $resource = new Resource($this->getCommandBus());
         get_property($resource, 'id')->setValue($resource, $this->getJson()['id']);
         get_property($resource, 'slug')->setValue($resource, $this->getJson()['slug']);
 
-        $sub = new SubResource(QuickStart::create([]));
+        $sub = new SubResource($this->getCommandBus());
         get_property($sub, 'id')->setValue($sub, $this->getJson()['id']);
         get_property($sub, 'slug')->setValue($sub, $this->getJson()['slug']);
         get_property($resource, 'sub')->setValue($resource, $sub);
 
         $subs = [];
         foreach ($this->getJson()['subs'] as $index => $row) {
-            $subZero = new SubResource(QuickStart::create([]));
+            $subZero = new SubResource($this->getCommandBus());
             get_property($subZero, 'id')->setValue($subZero, $row['id']);
             get_property($subZero, 'slug')->setValue($subZero, $row['slug']);
             $subs[] = $subZero;
@@ -127,5 +129,13 @@ class FunctionsTest extends PHPUnit_Framework_TestCase
                 ],
             ],
         ];
+    }
+
+    protected function getCommandBus(): CommandBus
+    {
+        return new CommandBus(
+            $this->prophesize(LoopInterface::class)->reveal(),
+            $this->prophesize(CommandHandlerMiddleware::class)->reveal()
+        );
     }
 }

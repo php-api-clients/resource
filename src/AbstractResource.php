@@ -2,7 +2,7 @@
 
 namespace ApiClients\Foundation\Resource;
 
-use League\Tactician\CommandBus;
+use ApiClients\Tools\CommandBus\CommandBus;
 
 abstract class AbstractResource implements ResourceInterface
 {
