@@ -30,7 +30,7 @@ abstract class AbstractResource implements ResourceInterface
      * @param $command
      * @return CancellablePromiseInterface
      */
-    public function handleCommand($command): CancellablePromiseInterface
+    protected function handleCommand($command): CancellablePromiseInterface
     {
         return $this->commandBus->handle($command);
     }
