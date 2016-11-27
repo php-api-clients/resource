@@ -3,6 +3,7 @@
 namespace ApiClients\Foundation\Resource;
 
 use ApiClients\Tools\CommandBus\CommandBus;
+use React\Promise\CancellablePromiseInterface;
 
 abstract class AbstractResource implements ResourceInterface
 {
@@ -17,10 +18,11 @@ abstract class AbstractResource implements ResourceInterface
     }
 
     /**
-     * @return CommandBus
+     * @param $command
+     * @return CancellablePromiseInterface
      */
-    protected function getCommandBus()
+    public function handleCommand($command): CancellablePromiseInterface
     {
-        return $this->commandBus;
+        return $this->commandBus->handle($command);
     }
 }
