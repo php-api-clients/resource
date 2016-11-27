@@ -11,7 +11,8 @@
   ],
   "require": {
     "php": "^7.0",
-    "api-clients/command-bus": "dev-master"
+    "api-clients/command-bus": "dev-master",
+    "clue/block-react": "^1.1"
   },
   "require-dev": {
     "phpunit/phpunit": "^5.2.3",

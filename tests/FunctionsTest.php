@@ -10,15 +10,25 @@ use function ApiClients\Foundation\resource_pretty_print;
 use ApiClients\Tools\CommandBus\CommandBus;
 use League\Tactician\Handler\CommandHandlerMiddleware;
 use PHPUnit_Framework_TestCase;
+use React\EventLoop\Factory;
 use React\EventLoop\LoopInterface;
+use React\Promise\FulfilledPromise;
 
 class FunctionsTest extends PHPUnit_Framework_TestCase
 {
+    public function testResourceWait()
+    {
+        $loop = $this->getLoop();
+        $resource = new Resource($loop, $this->getCommandBus($loop));
+        $this->assertSame('foo.bar', $resource->consumePromise(new FulfilledPromise('foo.bar')));
+    }
+
     public function testGetProperties()
     {
         $properties = [];
 
-        foreach (get_properties(new Resource($this->getCommandBus())) as $property) {
+        $loop = $this->getLoop();
+        foreach (get_properties(new Resource($loop, $this->getCommandBus($loop))) as $property) {
             $properties[] = $property->getName();
         }
 
@@ -32,7 +42,8 @@ class FunctionsTest extends PHPUnit_Framework_TestCase
 
     public function testGetProperty()
     {
-        $resource = new Resource($this->getCommandBus());
+        $loop = $this->getLoop();
+        $resource = new Resource($loop, $this->getCommandBus($loop));
         get_property($resource, 'id')->setValue($resource, $this->getJson()['id']);
 
         $this->assertSame(
@@ -43,18 +54,19 @@ class FunctionsTest extends PHPUnit_Framework_TestCase
 
     public function testResourcePrettyPrint()
     {
-        $resource = new Resource($this->getCommandBus());
+        $loop = $this->getLoop();
+        $resource = new Resource($loop, $this->getCommandBus($loop));
         get_property($resource, 'id')->setValue($resource, $this->getJson()['id']);
         get_property($resource, 'slug')->setValue($resource, $this->getJson()['slug']);
 
-        $sub = new SubResource($this->getCommandBus());
+        $sub = new SubResource($loop, $this->getCommandBus($loop));
         get_property($sub, 'id')->setValue($sub, $this->getJson()['id']);
         get_property($sub, 'slug')->setValue($sub, $this->getJson()['slug']);
         get_property($resource, 'sub')->setValue($resource, $sub);
 
         $subs = [];
         foreach ($this->getJson()['subs'] as $index => $row) {
-            $subZero = new SubResource($this->getCommandBus());
+            $subZero = new SubResource($loop, $this->getCommandBus($loop));
             get_property($subZero, 'id')->setValue($subZero, $row['id']);
             get_property($subZero, 'slug')->setValue($subZero, $row['slug']);
             $subs[] = $subZero;
@@ -131,10 +143,15 @@ class FunctionsTest extends PHPUnit_Framework_TestCase
         ];
     }
 
-    protected function getCommandBus(): CommandBus
+    protected function getLoop(): LoopInterface
+    {
+        return Factory::create();
+    }
+
+    protected function getCommandBus(LoopInterface $loop): CommandBus
     {
         return new CommandBus(
-            $this->prophesize(LoopInterface::class)->reveal(),
+            $loop,
             $this->prophesize(CommandHandlerMiddleware::class)->reveal()
         );
     }
