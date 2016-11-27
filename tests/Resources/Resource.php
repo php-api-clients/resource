@@ -9,6 +9,7 @@ use ApiClients\Foundation\Annotations\Rename;
 use ApiClients\Foundation\Resource\AbstractResource;
 use ApiClients\Foundation\Resource\ResourceInterface;
 use ApiClients\Foundation\Transport\Client;
+use React\Promise\PromiseInterface;
 
 /**
  * @Nested(sub="SubResource")
@@ -61,7 +62,13 @@ class Resource extends AbstractResource implements ResourceInterface
     {
     }
 
-    public function setTransport(Client $client)
+    public function consumePromise(PromiseInterface $promise)
     {
+        return $this->wait($promise);
+    }
+
+    public function exposeCommandBus()
+    {
+        return $this->handleCommand();
     }
 }
