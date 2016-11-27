@@ -66,9 +66,4 @@ class Resource extends AbstractResource implements ResourceInterface
     {
         return $this->wait($promise);
     }
-
-    public function exposeCommandBus()
-    {
-        return $this->handleCommand();
-    }
 }
