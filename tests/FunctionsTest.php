@@ -4,25 +4,16 @@ namespace ApiClients\Tests\Foundation\Resource;
 
 use ApiClients\Tests\Foundation\Resource\Resources\Async\SubResource;
 use ApiClients\Tests\Foundation\Resource\Resources\Sync\Resource;
+use ApiClients\Tools\CommandBus\CommandBus;
+use League\Tactician\Handler\CommandHandlerMiddleware;
+use React\EventLoop\Factory;
+use React\EventLoop\LoopInterface;
 use function ApiClients\Foundation\get_properties;
 use function ApiClients\Foundation\get_property;
 use function ApiClients\Foundation\resource_pretty_print;
-use ApiClients\Tools\CommandBus\CommandBus;
-use League\Tactician\Handler\CommandHandlerMiddleware;
-use PHPUnit_Framework_TestCase;
-use React\EventLoop\Factory;
-use React\EventLoop\LoopInterface;
-use React\Promise\FulfilledPromise;
 
-class FunctionsTest extends PHPUnit_Framework_TestCase
+class FunctionsTest extends TestCase
 {
-    public function testResourceWait()
-    {
-        $loop = $this->getLoop();
-        $resource = new Resource($loop, $this->getCommandBus($loop));
-        $this->assertSame('foo.bar', $resource->consumePromise(new FulfilledPromise('foo.bar')));
-    }
-
     public function testGetProperties()
     {
         $properties = [];
@@ -115,44 +106,5 @@ class FunctionsTest extends PHPUnit_Framework_TestCase
         }
 
         $this->assertSame($expected, $actual);
-    }
-
-    protected function getJson()
-    {
-        return [
-            'id' => 1,
-            'slug' => 'Wyrihaximus/php-travis-client',
-            'sub' => [
-                'id' => 1,
-                'slug' => 'Wyrihaximus/php-travis-client',
-            ],
-            'subs' => [
-                [
-                    'id' => 1,
-                    'slug' => 'Wyrihaximus/php-travis-client',
-                ],
-                [
-                    'id' => 2,
-                    'slug' => 'Wyrihaximus/php-travis-client',
-                ],
-                [
-                    'id' => 3,
-                    'slug' => 'Wyrihaximus/php-travis-client',
-                ],
-            ],
-        ];
-    }
-
-    protected function getLoop(): LoopInterface
-    {
-        return Factory::create();
-    }
-
-    protected function getCommandBus(LoopInterface $loop): CommandBus
-    {
-        return new CommandBus(
-            $loop,
-            $this->prophesize(CommandHandlerMiddleware::class)->reveal()
-        );
     }
 }

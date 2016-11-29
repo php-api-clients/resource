@@ -6,6 +6,7 @@ use ApiClients\Tools\CommandBus\CommandBus;
 use function Clue\React\Block\await;
 use React\EventLoop\LoopInterface;
 use React\Promise\PromiseInterface;
+use React\Promise\CancellablePromiseInterface;
 
 abstract class AbstractResource implements ResourceInterface
 {
@@ -26,11 +27,12 @@ abstract class AbstractResource implements ResourceInterface
     }
 
     /**
-     * @return CommandBus
+     * @param $command
+     * @return CancellablePromiseInterface
      */
-    protected function getCommandBus()
+    protected function handleCommand($command): CancellablePromiseInterface
     {
-        return $this->commandBus;
+        return $this->commandBus->handle($command);
     }
 
     protected function wait(PromiseInterface $promise)
