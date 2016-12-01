@@ -8,6 +8,7 @@ use ApiClients\Tools\CommandBus\CommandBus;
 use League\Tactician\Handler\CommandHandlerMiddleware;
 use React\EventLoop\Factory;
 use React\EventLoop\LoopInterface;
+use function ApiClients\Foundation\array_pretty_print;
 use function ApiClients\Foundation\get_properties;
 use function ApiClients\Foundation\get_property;
 use function ApiClients\Foundation\resource_pretty_print;
@@ -104,6 +105,34 @@ class FunctionsTest extends TestCase
                 $actual
             );
         }
+
+        $this->assertSame($expected, $actual);
+    }
+
+    public function testArrayPrettyPrint()
+    {
+        $array = [
+            'foo' => 'bar',
+            'bar' => [
+                [
+                    'bar',
+                ],
+            ],
+        ];
+
+        ob_start();
+        array_pretty_print($array);
+        $actual = ob_get_clean();
+
+        $expected = "[
+	foo: bar
+	bar: [
+		0: [
+			0: bar
+		]
+	]
+]
+";
 
         $this->assertSame($expected, $actual);
     }

@@ -35,12 +35,19 @@ function resource_pretty_print(ResourceInterface $resource, int $indentLevel = 0
         if (is_array($propertyValue)) {
             echo '[', PHP_EOL;
             foreach ($propertyValue as $arrayKey => $arrayValue) {
-                if (!($arrayValue instanceof ResourceInterface)) {
-                    echo $arrayIndent, $arrayKey, ': ', $arrayValue, PHP_EOL;
+                if ($arrayValue instanceof ResourceInterface) {
+                    resource_pretty_print($arrayValue, $indentLevel + 2, true);
                     continue;
                 }
 
-                resource_pretty_print($arrayValue, $indentLevel + 2, true);
+                echo $arrayIndent, $arrayKey, ': ';
+
+                if (is_array($arrayValue)) {
+                    array_pretty_print($arrayValue, $arrayIndent + 2);
+                    continue;
+                }
+
+                echo $arrayValue, PHP_EOL;
             }
             echo $propertyIndent, ']', PHP_EOL;
             continue;
@@ -48,6 +55,27 @@ function resource_pretty_print(ResourceInterface $resource, int $indentLevel = 0
 
         echo $propertyValue, PHP_EOL;
     }
+}
+
+/**
+ * @param array $array
+ * @param int $indentLevel
+ */
+function array_pretty_print(array $array, int $indentLevel = 0)
+{
+    $indent = str_repeat("\t", $indentLevel);
+    $propertyIndent = str_repeat("\t", $indentLevel + 1);
+    echo '[', PHP_EOL;
+    foreach ($array as $key => $value) {
+        echo $propertyIndent, $key, ': ';
+        if (is_array($value)) {
+            array_pretty_print($value, $indentLevel + 1);
+            continue;
+        }
+
+        echo $value, PHP_EOL;
+    }
+    echo $indent, ']', PHP_EOL;
 }
 
 /**
