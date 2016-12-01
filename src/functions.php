@@ -2,9 +2,9 @@
 
 namespace ApiClients\Foundation;
 
+use ApiClients\Foundation\Resource\ResourceInterface;
 use ReflectionClass;
 use ReflectionProperty;
-use ApiClients\Foundation\Resource\ResourceInterface;
 
 /**
  * @param ResourceInterface $resource

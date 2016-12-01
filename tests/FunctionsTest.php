@@ -4,10 +4,6 @@ namespace ApiClients\Tests\Foundation\Resource;
 
 use ApiClients\Tests\Foundation\Resource\Resources\Async\SubResource;
 use ApiClients\Tests\Foundation\Resource\Resources\Sync\Resource;
-use ApiClients\Tools\CommandBus\CommandBus;
-use League\Tactician\Handler\CommandHandlerMiddleware;
-use React\EventLoop\Factory;
-use React\EventLoop\LoopInterface;
 use function ApiClients\Foundation\array_pretty_print;
 use function ApiClients\Foundation\get_properties;
 use function ApiClients\Foundation\get_property;
