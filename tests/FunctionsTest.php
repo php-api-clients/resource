@@ -130,6 +130,25 @@ class FunctionsTest extends TestCase
 ]
 ";
 
+        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+            $expected = str_replace(
+                [
+                    "\r",
+                    "\n",
+                ],
+                '',
+                $expected
+            );
+            $actual = str_replace(
+                [
+                    "\r",
+                    "\n",
+                ],
+                '',
+                $actual
+            );
+        }
+
         $this->assertSame($expected, $actual);
     }
 }
