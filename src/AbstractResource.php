@@ -2,7 +2,7 @@
 
 namespace ApiClients\Foundation\Resource;
 
-use ApiClients\Tools\CommandBus\CommandBus;
+use ApiClients\Tools\CommandBus\CommandBusInterface;
 use React\EventLoop\LoopInterface;
 use React\Promise\CancellablePromiseInterface;
 use React\Promise\PromiseInterface;
@@ -16,11 +16,11 @@ abstract class AbstractResource implements ResourceInterface
     private $loop;
 
     /**
-     * @var CommandBus
+     * @var CommandBusInterface
      */
     private $commandBus;
 
-    public function __construct(LoopInterface $loop, CommandBus $commandBus)
+    public function __construct(LoopInterface $loop, CommandBusInterface $commandBus)
     {
         $this->loop = $loop;
         $this->commandBus = $commandBus;
