@@ -2,8 +2,8 @@
 
 namespace ApiClients\Foundation\Resource;
 
-use ApiClients\Foundation\Hydrator\Annotations\Collection;
-use ApiClients\Foundation\Hydrator\Annotations\Nested;
+use ApiClients\Foundation\Hydrator\Annotation\Collection;
+use ApiClients\Foundation\Hydrator\Annotation\Nested;
 
 /**
  * @Nested(foo="Acme\Bar", bar="Acme\Foo")
