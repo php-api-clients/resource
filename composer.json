@@ -9,12 +9,12 @@
     }
   ],
   "require": {
-    "php": "^7.0",
+    "php": "^7.2",
     "api-clients/command-bus": "^2.0",
     "clue/block-react": "^1.1"
   },
   "require-dev": {
-    "api-clients/test-utilities": "^2.0"
+    "api-clients/test-utilities": "^5.1"
   },
   "autoload": {
     "psr-4": {
@@ -30,13 +30,20 @@
     }
   },
   "config": {
-    "sort-packages": true
+    "sort-packages": true,
+    "platform": {
+      "php": "7.2"
+    }
   },
   "scripts": {
     "ensure-installed": "composer install --ansi -n -q",
     "cs": [
       "@ensure-installed",
-      "phpcs --standard=PSR2 src/"
+      "php-cs-fixer fix --config=.php_cs --ansi --dry-run --diff --verbose --allow-risky=yes --show-progress=estimating"
+    ],
+    "cs-fix": [
+      "@ensure-installed",
+      "php-cs-fixer fix --config=.php_cs --ansi --verbose --allow-risky=yes --show-progress=estimating"
     ],
     "unit": [
       "@ensure-installed",
@@ -66,9 +73,9 @@
       "@unit"
     ],
     "qa-ci": [
-      "@qa-all"
+      "@unit"
     ],
-    "qa-ci-coverage": [
+    "qa-ci-extended": [
       "@qa-all-coverage"
     ],
     "qa-ci-windows": [
