@@ -8,9 +8,6 @@ use ApiClients\Tools\CommandBus\CommandBus;
 use League\Tactician\Handler\CommandHandlerMiddleware;
 use Prophecy\Argument;
 use React\Promise\FulfilledPromise;
-use function ApiClients\Foundation\get_properties;
-use function ApiClients\Foundation\get_property;
-use function ApiClients\Foundation\resource_pretty_print;
 
 class ResourceTest extends TestCase
 {
@@ -26,7 +23,8 @@ class ResourceTest extends TestCase
         $command = new \stdClass();
         $loop = $this->getLoop();
         $middleware = $this->prophesize(CommandHandlerMiddleware::class);
-        $middleware->execute($command, Argument::type('callable'))->shouldBeCalled()->willReturn(function () {});
+        $middleware->execute($command, Argument::type('callable'))->shouldBeCalled()->willReturn(function () {
+        });
         $commandBus = new CommandBus(
             $loop,
             $middleware->reveal()

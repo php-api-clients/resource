@@ -8,8 +8,8 @@ use ReflectionProperty;
 
 /**
  * @param ResourceInterface $resource
- * @param int $indentLevel
- * @param bool $resourceIndent
+ * @param int               $indentLevel
+ * @param bool              $resourceIndent
  */
 function resource_pretty_print(ResourceInterface $resource, int $indentLevel = 0, bool $resourceIndent = false)
 {
@@ -59,7 +59,7 @@ function resource_pretty_print(ResourceInterface $resource, int $indentLevel = 0
 
 /**
  * @param array $array
- * @param int $indentLevel
+ * @param int   $indentLevel
  */
 function array_pretty_print(array $array, int $indentLevel = 0)
 {
@@ -79,18 +79,19 @@ function array_pretty_print(array $array, int $indentLevel = 0)
 }
 
 /**
- * @param ResourceInterface $resource
+ * @param  ResourceInterface $resource
  * @return array
  */
 function get_properties(ResourceInterface $resource): array
 {
     $class = new ReflectionClass($resource);
+
     return $class->getProperties();
 }
 
 /**
- * @param ResourceInterface $resource
- * @param string $property
+ * @param  ResourceInterface  $resource
+ * @param  string             $property
  * @return ReflectionProperty
  */
 function get_property(ResourceInterface $resource, string $property)
@@ -98,5 +99,6 @@ function get_property(ResourceInterface $resource, string $property)
     $class = new ReflectionClass($resource);
     $prop = $class->getProperty($property);
     $prop->setAccessible(true);
+
     return $prop;
 }

@@ -120,7 +120,7 @@ class FunctionsTest extends TestCase
         array_pretty_print($array);
         $actual = ob_get_clean();
 
-        $expected = "[
+        $expected = '[
 	foo: bar
 	bar: [
 		0: [
@@ -128,7 +128,7 @@ class FunctionsTest extends TestCase
 		]
 	]
 ]
-";
+';
 
         if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
             $expected = str_replace(
