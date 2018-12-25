@@ -9,9 +9,12 @@ use function ApiClients\Foundation\get_properties;
 use function ApiClients\Foundation\get_property;
 use function ApiClients\Foundation\resource_pretty_print;
 
+/**
+ * @internal
+ */
 class FunctionsTest extends TestCase
 {
-    public function testGetProperties()
+    public function testGetProperties(): void
     {
         $properties = [];
 
@@ -28,7 +31,7 @@ class FunctionsTest extends TestCase
         ], $properties);
     }
 
-    public function testGetProperty()
+    public function testGetProperty(): void
     {
         $loop = $this->getLoop();
         $resource = new Resource($loop, $this->getCommandBus($loop));
@@ -40,7 +43,7 @@ class FunctionsTest extends TestCase
         );
     }
 
-    public function testResourcePrettyPrint()
+    public function testResourcePrettyPrint(): void
     {
         $loop = $this->getLoop();
         $resource = new Resource($loop, $this->getCommandBus($loop));
@@ -79,12 +82,12 @@ class FunctionsTest extends TestCase
 			slug: Wyrihaximus/php-travis-client
 	]
 ";
-        ob_start();
+        \ob_start();
         resource_pretty_print($resource);
-        $actual = ob_get_clean();
+        $actual = \ob_get_clean();
 
-        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-            $expected = str_replace(
+        if (\strtoupper(\substr(PHP_OS, 0, 3)) === 'WIN') {
+            $expected = \str_replace(
                 [
                     "\r",
                     "\n",
@@ -92,7 +95,7 @@ class FunctionsTest extends TestCase
                 '',
                 $expected
             );
-            $actual = str_replace(
+            $actual = \str_replace(
                 [
                     "\r",
                     "\n",
@@ -105,7 +108,7 @@ class FunctionsTest extends TestCase
         $this->assertSame($expected, $actual);
     }
 
-    public function testArrayPrettyPrint()
+    public function testArrayPrettyPrint(): void
     {
         $array = [
             'foo' => 'bar',
@@ -116,9 +119,9 @@ class FunctionsTest extends TestCase
             ],
         ];
 
-        ob_start();
+        \ob_start();
         array_pretty_print($array);
-        $actual = ob_get_clean();
+        $actual = \ob_get_clean();
 
         $expected = '[
 	foo: bar
@@ -130,8 +133,8 @@ class FunctionsTest extends TestCase
 ]
 ';
 
-        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-            $expected = str_replace(
+        if (\strtoupper(\substr(PHP_OS, 0, 3)) === 'WIN') {
+            $expected = \str_replace(
                 [
                     "\r",
                     "\n",
@@ -139,7 +142,7 @@ class FunctionsTest extends TestCase
                 '',
                 $expected
             );
-            $actual = str_replace(
+            $actual = \str_replace(
                 [
                     "\r",
                     "\n",

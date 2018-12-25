@@ -28,11 +28,11 @@ class SubResource extends AbstractResource implements ResourceInterface
         return $this->slug;
     }
 
-    public function refresh()
+    public function refresh(): void
     {
     }
 
-    public function setTransport(Client $client)
+    public function setTransport(Client $client): void
     {
     }
 }

@@ -8,6 +8,9 @@ use League\Tactician\Handler\CommandHandlerMiddleware;
 use React\EventLoop\Factory;
 use React\EventLoop\LoopInterface;
 
+/**
+ * @internal
+ */
 class TestCase extends BaseTestCase
 {
     protected function getJson(): array
