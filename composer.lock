@@ -1040,21 +1040,80 @@
             "time": "2017-02-17T13:53:21+00:00"
         },
         {
-            "name": "webmozart/assert",
-            "version": "1.3.0",
+            "name": "symfony/polyfill-ctype",
+            "version": "v1.10.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/webmozart/assert.git",
-                "reference": "0df1908962e7a3071564e857d86874dad1ef204a"
+                "url": "https://github.com/symfony/polyfill-ctype.git",
+                "reference": "e3d826245268269cd66f8326bd8bc066687b4a19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webmozart/assert/zipball/0df1908962e7a3071564e857d86874dad1ef204a",
-                "reference": "0df1908962e7a3071564e857d86874dad1ef204a",
+                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/e3d826245268269cd66f8326bd8bc066687b4a19",
+                "reference": "e3d826245268269cd66f8326bd8bc066687b4a19",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.3.3 || ^7.0"
+                "php": ">=5.3.3"
+            },
+            "suggest": {
+                "ext-ctype": "For best performance"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.9-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Polyfill\\Ctype\\": ""
+                },
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                },
+                {
+                    "name": "Gert de Pagter",
+                    "email": "BackEndTea@gmail.com"
+                }
+            ],
+            "description": "Symfony polyfill for ctype functions",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "ctype",
+                "polyfill",
+                "portable"
+            ],
+            "time": "2018-08-06T14:22:27+00:00"
+        },
+        {
+            "name": "webmozart/assert",
+            "version": "1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webmozart/assert.git",
+                "reference": "83e253c8e0be5b0257b881e1827274667c5c17a9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webmozart/assert/zipball/83e253c8e0be5b0257b881e1827274667c5c17a9",
+                "reference": "83e253c8e0be5b0257b881e1827274667c5c17a9",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.3.3 || ^7.0",
+                "symfony/polyfill-ctype": "^1.8"
             },
             "require-dev": {
                 "phpunit/phpunit": "^4.6",
@@ -1087,7 +1146,7 @@
                 "check",
                 "validate"
             ],
-            "time": "2018-01-29T19:49:41+00:00"
+            "time": "2018-12-25T11:19:39+00:00"
         },
         {
             "name": "wyrihaximus/doctrine-annotation-autoloader",
@@ -1340,16 +1399,16 @@
     "packages-dev": [
         {
             "name": "api-clients/cs-fixer-config",
-            "version": "1.1.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-api-clients/cs-fixer-config.git",
-                "reference": "9d7a6ecd40f32220f8f10d5383596022a8cc9a16"
+                "reference": "91df959c3d8ab7e1797d03e1fc47e2f48377cf6a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-api-clients/cs-fixer-config/zipball/9d7a6ecd40f32220f8f10d5383596022a8cc9a16",
-                "reference": "9d7a6ecd40f32220f8f10d5383596022a8cc9a16",
+                "url": "https://api.github.com/repos/php-api-clients/cs-fixer-config/zipball/91df959c3d8ab7e1797d03e1fc47e2f48377cf6a",
+                "reference": "91df959c3d8ab7e1797d03e1fc47e2f48377cf6a",
                 "shasum": ""
             },
             "require": {
@@ -1357,7 +1416,7 @@
                 "php": "^7.2"
             },
             "require-dev": {
-                "api-clients/test-utilities": "^4.3"
+                "api-clients/test-utilities": "^5.1"
             },
             "type": "library",
             "autoload": {
@@ -1376,32 +1435,32 @@
                 }
             ],
             "description": "friendsofphp/php-cs-fixer config",
-            "time": "2018-11-21T22:05:53+00:00"
+            "time": "2018-12-24T13:32:35+00:00"
         },
         {
             "name": "api-clients/test-utilities",
-            "version": "5.2.0",
+            "version": "5.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-api-clients/test-utilities.git",
-                "reference": "8f1f88109cb3819d52bfe77e035218961ec4afa8"
+                "reference": "2af958ebe21bc7671d4cfd253e642f8a6877388f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-api-clients/test-utilities/zipball/8f1f88109cb3819d52bfe77e035218961ec4afa8",
-                "reference": "8f1f88109cb3819d52bfe77e035218961ec4afa8",
+                "url": "https://api.github.com/repos/php-api-clients/test-utilities/zipball/2af958ebe21bc7671d4cfd253e642f8a6877388f",
+                "reference": "2af958ebe21bc7671d4cfd253e642f8a6877388f",
                 "shasum": ""
             },
             "require": {
-                "api-clients/cs-fixer-config": "^1.0",
-                "clue/block-react": "^1.1",
-                "friendsofphp/php-cs-fixer": "^2.5",
-                "infection/infection": "^0.11.0",
+                "api-clients/cs-fixer-config": "^1.1.1",
+                "clue/block-react": "^1.3",
+                "friendsofphp/php-cs-fixer": "^2.13",
+                "infection/infection": "^0.11.4",
                 "jakub-onderka/php-console-highlighter": "^0.4",
                 "jakub-onderka/php-parallel-lint": "^1.0.0",
                 "localheinz/composer-normalize": "^1.0.0",
                 "php": "^7.2",
-                "phpunit/phpunit": "^7.1"
+                "phpunit/phpunit": "^7.5"
             },
             "type": "library",
             "autoload": {
@@ -1420,7 +1479,7 @@
                 }
             ],
             "description": "Test utilities for api-clients packages",
-            "time": "2018-11-22T16:23:05+00:00"
+            "time": "2018-12-24T13:49:10+00:00"
         },
         {
             "name": "composer/ca-bundle",
@@ -2217,16 +2276,16 @@
         },
         {
             "name": "localheinz/composer-normalize",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/localheinz/composer-normalize.git",
-                "reference": "c676a282a3949273d0ed38b6fce841d248f6e3bf"
+                "reference": "dabf192e6fd26113bc0dd24933502b820a0b83c4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/localheinz/composer-normalize/zipball/c676a282a3949273d0ed38b6fce841d248f6e3bf",
-                "reference": "c676a282a3949273d0ed38b6fce841d248f6e3bf",
+                "url": "https://api.github.com/repos/localheinz/composer-normalize/zipball/dabf192e6fd26113bc0dd24933502b820a0b83c4",
+                "reference": "dabf192e6fd26113bc0dd24933502b820a0b83c4",
                 "shasum": ""
             },
             "require": {
@@ -2234,22 +2293,24 @@
                 "localheinz/composer-json-normalizer": "^1.0.1",
                 "localheinz/json-normalizer": "~0.9.0",
                 "php": "^7.1",
-                "sebastian/diff": "^2.0.1 || ^3.0.0",
-                "symfony/console": "^2.5.0 || ^3.0.0 || ^4.0.0"
+                "sebastian/diff": "^2.0.1 || ^3.0.0"
             },
             "require-dev": {
-                "composer/composer": "^1.1.0",
-                "infection/infection": "~0.11.1",
-                "localheinz/php-cs-fixer-config": "~1.15.0",
-                "localheinz/phpstan-rules": "~0.1.0",
+                "composer/composer": "^1.7.0",
+                "jangregor/phpstan-prophecy": "~0.2.0",
+                "localheinz/php-cs-fixer-config": "~1.17.0",
+                "localheinz/phpstan-rules": "~0.5.0",
                 "localheinz/test-util": "0.6.1",
-                "mikey179/vfsstream": "^1.6.5",
                 "phpstan/phpstan": "~0.10.5",
                 "phpstan/phpstan-strict-rules": "~0.10.1",
-                "phpunit/phpunit": "^6.5.13 || ^7.4.3"
+                "phpunit/phpunit": "^6.5.13 || ^7.5.0",
+                "symfony/filesystem": "^4.2.1"
             },
             "type": "composer-plugin",
             "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                },
                 "class": "Localheinz\\Composer\\Normalize\\NormalizePlugin"
             },
             "autoload": {
@@ -2275,7 +2336,7 @@
                 "normalizer",
                 "plugin"
             ],
-            "time": "2018-11-17T15:51:26+00:00"
+            "time": "2018-12-24T16:04:04+00:00"
         },
         {
             "name": "localheinz/json-normalizer",
@@ -4250,64 +4311,6 @@
                 "options"
             ],
             "time": "2018-11-11T19:52:12+00:00"
-        },
-        {
-            "name": "symfony/polyfill-ctype",
-            "version": "v1.10.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/polyfill-ctype.git",
-                "reference": "e3d826245268269cd66f8326bd8bc066687b4a19"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/e3d826245268269cd66f8326bd8bc066687b4a19",
-                "reference": "e3d826245268269cd66f8326bd8bc066687b4a19",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3"
-            },
-            "suggest": {
-                "ext-ctype": "For best performance"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.9-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Ctype\\": ""
-                },
-                "files": [
-                    "bootstrap.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                },
-                {
-                    "name": "Gert de Pagter",
-                    "email": "BackEndTea@gmail.com"
-                }
-            ],
-            "description": "Symfony polyfill for ctype functions",
-            "homepage": "https://symfony.com",
-            "keywords": [
-                "compatibility",
-                "ctype",
-                "polyfill",
-                "portable"
-            ],
-            "time": "2018-08-06T14:22:27+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
