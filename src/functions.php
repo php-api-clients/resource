@@ -20,7 +20,7 @@ function resource_pretty_print(ResourceInterface $resource, int $indentLevel = 0
     if ($resourceIndent) {
         echo $indent;
     }
-    echo \get_class($resource), PHP_EOL;
+    echo \get_class($resource), \PHP_EOL;
 
     foreach (get_properties($resource) as $property) {
         echo $propertyIndent, $property->getName(), ': ';
@@ -33,7 +33,7 @@ function resource_pretty_print(ResourceInterface $resource, int $indentLevel = 0
         }
 
         if (\is_array($propertyValue)) {
-            echo '[', PHP_EOL;
+            echo '[', \PHP_EOL;
             foreach ($propertyValue as $arrayKey => $arrayValue) {
                 if ($arrayValue instanceof ResourceInterface) {
                     resource_pretty_print($arrayValue, $indentLevel + 2, true);
@@ -47,13 +47,13 @@ function resource_pretty_print(ResourceInterface $resource, int $indentLevel = 0
                     continue;
                 }
 
-                echo $arrayValue, PHP_EOL;
+                echo $arrayValue, \PHP_EOL;
             }
-            echo $propertyIndent, ']', PHP_EOL;
+            echo $propertyIndent, ']', \PHP_EOL;
             continue;
         }
 
-        echo $propertyValue, PHP_EOL;
+        echo $propertyValue, \PHP_EOL;
     }
 }
 
@@ -65,7 +65,7 @@ function array_pretty_print(array $array, int $indentLevel = 0): void
 {
     $indent = \str_repeat("\t", $indentLevel);
     $propertyIndent = \str_repeat("\t", $indentLevel + 1);
-    echo '[', PHP_EOL;
+    echo '[', \PHP_EOL;
     foreach ($array as $key => $value) {
         echo $propertyIndent, $key, ': ';
         if (\is_array($value)) {
@@ -73,9 +73,9 @@ function array_pretty_print(array $array, int $indentLevel = 0): void
             continue;
         }
 
-        echo $value, PHP_EOL;
+        echo $value, \PHP_EOL;
     }
-    echo $indent, ']', PHP_EOL;
+    echo $indent, ']', \PHP_EOL;
 }
 
 /**

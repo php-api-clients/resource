@@ -86,7 +86,7 @@ class FunctionsTest extends TestCase
         resource_pretty_print($resource);
         $actual = \ob_get_clean();
 
-        if (\strtoupper(\substr(PHP_OS, 0, 3)) === 'WIN') {
+        if (\strtoupper(\substr(\PHP_OS, 0, 3)) === 'WIN') {
             $expected = \str_replace(
                 [
                     "\r",
@@ -133,7 +133,7 @@ class FunctionsTest extends TestCase
 ]
 ';
 
-        if (\strtoupper(\substr(PHP_OS, 0, 3)) === 'WIN') {
+        if (\strtoupper(\substr(\PHP_OS, 0, 3)) === 'WIN') {
             $expected = \str_replace(
                 [
                     "\r",
