@@ -2,12 +2,12 @@
 
 namespace ApiClients\Tests\Foundation\Resource;
 
-use ApiClients\Tests\Foundation\Resource\Resources\Async\SubResource;
-use ApiClients\Tests\Foundation\Resource\Resources\Sync\Resource;
 use function ApiClients\Foundation\array_pretty_print;
 use function ApiClients\Foundation\get_properties;
 use function ApiClients\Foundation\get_property;
 use function ApiClients\Foundation\resource_pretty_print;
+use ApiClients\Tests\Foundation\Resource\Resources\Async\SubResource;
+use ApiClients\Tests\Foundation\Resource\Resources\Sync\Resource;
 
 /**
  * @internal

@@ -3,10 +3,10 @@
 namespace ApiClients\Foundation\Resource;
 
 use ApiClients\Tools\CommandBus\CommandBusInterface;
+use function Clue\React\Block\await;
 use React\EventLoop\LoopInterface;
 use React\Promise\CancellablePromiseInterface;
 use React\Promise\PromiseInterface;
-use function Clue\React\Block\await;
 
 abstract class AbstractResource implements ResourceInterface
 {
